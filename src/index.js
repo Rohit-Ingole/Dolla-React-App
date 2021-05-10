@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
-import { BrowserRouter } from "react-router-dom";
+import { StateProvider } from "./StateProvider";
+import reducer, { initialState } from "./reducer";
 
 const GlobalStyle = createGlobalStyle`
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
@@ -17,10 +18,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <BrowserRouter>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <GlobalStyle />
       <App />
-    </BrowserRouter>
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
